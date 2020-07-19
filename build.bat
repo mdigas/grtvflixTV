@@ -1,1 +1,0 @@
-tns build android --release --bundle --env.uglify --copy-to $HOME/Downloads/ --key-store-path C:\Users\mike\Desktop\mdigas.keystore.p12 --key-store-alias upload --key-store-password $1971!wiz!mik! --key-store-alias-password $1971!wiz!mik!

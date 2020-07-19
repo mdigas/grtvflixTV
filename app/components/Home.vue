@@ -1,0 +1,242 @@
+<template>
+    <Page class="page" actionBarHidden="true" >
+        <ScrollView  orientation="vertical">
+        <StackLayout v-if="ok" orientation="vertical">
+        <GridLayout columns="50,350,*" rows="auto" >
+             <Image row="0" col="0" colSpan="3" :src="movies[idx].bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
+             <StackLayout row="0" col="0" colSpan="2" class="stdown">
+                <Label class="h4" :text="movies[idx].title" style="color: white;" />
+                <Label class="diar" :text="'Διάρκεια: '+movies[idx].dur" style="color: white;" />
+                <Label class="desc" :text="movies[idx].short_desc" row="0" col="0" colSpan="2" textWrap="True" />
+                <Label class="dm" :text="'Διαθέσιμο μέχρι: '+movies[idx].expiration_date"  />
+            </StackLayout>
+            <StackLayout row="0" col="0" colSpan="3" class="stdown1">
+                <Label text="Ταινίες" class="h2" />
+                <ScrollView orientation="horizontal" >
+                    <StackLayout orientation="horizontal" >
+                        <GridLayout v-for="(movie, index) in movies" rows="200,1" columns="350" class="card"  >
+                            <Image row="0" col="0" :src="movie.image"  class="card" loadMode="async" horizontalAlignment="center" verticalAlignment="center" stretch="aspectFit" @tap="onItemTap1(index)" />
+                            <Button row="1" col="0" :id="1" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap1(index)" />
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>
+                <Label text="Σειρές" class="h2" />
+                <ScrollView orientation="horizontal">
+                    <StackLayout orientation="horizontal" >
+                        <GridLayout v-for="(seira, indexs) in seires" rows="200,1" columns="350" class="card"  >
+                            <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+seira.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap2(indexs)" />
+                            <Button row="1" col="0"  class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs)" />
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>
+                <Label text="Ξένα Ντοκιμαντέρ" class="h2" />
+                <ScrollView orientation="horizontal">
+                    <StackLayout orientation="horizontal" >
+                        <GridLayout v-for="(doc, indexd) in documentaries" rows="200,1" columns="350" class="card"  >
+                            <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+doc.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap3(indexd)" />
+                            <Button row="1" col="0"  class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap3(indexd)" />
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>
+                <Label text="Ελληνικά Ντοκιμαντέρ" class="h2" />
+                <ScrollView orientation="horizontal">
+                    <StackLayout orientation="horizontal" >
+                        <GridLayout v-for="(eldoc, index) in eldocumentaries" rows="200,1" columns="350" class="card"  >
+                            <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+eldoc.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap6(index)" />
+                            <Button row="1" col="0"  class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap6(index)" />                            
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>            
+                <Label text="Ενημέρωση" class="h2" />
+                <ScrollView orientation="horizontal">
+                    <StackLayout orientation="horizontal" >
+                        <GridLayout v-for="(enim, index) in enimerosi" rows="200,1" columns="350" class="card"  >
+                            <Image row="0" col="0" :src="enim.image" class="card" loadMode="async" stretch="aspectFill"  @tap="onItemTap5(index)" />
+                            <Button row="1" col="0"  class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap5(index)" />                            
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView> 
+                <Label text="Παιδικά" class="h2" />                        
+                <ScrollView orientation="horizontal">
+                    <StackLayout orientation="horizontal" >
+                        <GridLayout v-for="(paid, index) in paidika" rows="200,1" columns="350" class="card"  >
+                            <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+paid.menu_img_url" class="card" loadMode="async" stretch="aspectFill"  @tap="onItemTap4(index)" />
+                            <Button row="1" col="0"  class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap4(index)" />                            
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>   
+            </StackLayout>             
+        </GridLayout>
+
+                
+        </StackLayout>
+        </ScrollView>
+    </Page>
+</template>
+
+<script>
+    import * as http from "http";
+
+    export default {
+        methods: {  
+            elementLoaded(args) {
+                const view = args.object;
+                view.android["jsview"] = args.object;
+            },                    
+            onItemTap1: function(args) {
+                console.log("Item with index: " + args + " tapped");
+                this.$goto('Movie', {
+                    animated: true,
+                    transition: {
+                        name: "slideLeft",
+                        duration: 250,
+                        curve: "easeIn"},
+                    transitioniOS: {},
+                    transitionAndroid: {},
+                    props: {
+                        movie: this.movies[args]
+                    }
+                });
+            },
+            onItemTap2: function(args) {
+                console.log("Item with index: " + args + " tapped");
+                this.$goto('Seires', {
+                    animated: true,
+                    transition: {
+                        name: "slideLeft",
+                        duration: 250,
+                        curve: "easeIn"},
+                    transitioniOS: {},
+                    transitionAndroid: {},
+                    props: {
+                        seira: this.seires[args]
+                    }
+                });
+            },
+            onItemTap3: function(args) {
+                console.log("Item with index: " + args + " tapped");
+                this.$goto('Seires', {
+                    animated: true,
+                    transition: {
+                        name: "slideLeft",
+                        duration: 250,
+                        curve: "easeIn"},
+                    transitioniOS: {},
+                    transitionAndroid: {},
+                    props: {
+                        seira: this.documentaries[args]
+                    }
+                });
+            }, 
+            onItemTap6: function(args) {
+                console.log("Item with index: " + args + " tapped");
+                this.$goto('Seires', {
+                    animated: true,
+                    transition: {
+                        name: "slideLeft",
+                        duration: 250,
+                        curve: "easeIn"},
+                    transitioniOS: {},
+                    transitionAndroid: {},
+                    props: {
+                        seira: this.eldocumentaries[args]
+                    }
+                });
+            },            
+            onItemTap4: function(args) {
+                console.log("Item with index: " + args + " tapped");
+                this.$goto('Seires', {
+                    animated: true,
+                    transition: {
+                        name: "slideLeft",
+                        duration: 250,
+                        curve: "easeIn"},
+                    transitioniOS: {},
+                    transitionAndroid: {},
+                    props: {
+                        seira: this.paidika[args]
+                    }
+                });
+            }, 
+            onItemTap5: function(args) {
+                console.log("Item with index: " + args + " tapped");
+                this.$goto('News', {
+                    animated: true,
+                    transition: {
+                        name: "slideLeft",
+                        duration: 250,
+                        curve: "easeIn"},
+                    transitioniOS: {},
+                    transitionAndroid: {},
+                    props: {
+                        movie: this.enimerosi[args]
+                    }
+                });
+            },                                  
+        },
+        created: function() {
+            var url="http://hbbtv.ert.gr/pub/smarttv/ert/getFeedContent.php?categoryIdnam=tainies";
+
+            http.request({
+                url: url,
+                method: "GET",
+                }).then(response => {
+                this.movies = response.content.toJSON().elems[0].items;
+                this.idx = Math.floor(Math.random() * this.movies.length);
+                this.ok = true;
+                }, error => {
+                console.error(error);
+                });
+
+            var url1="http://hbbtv.ert.gr/pub/smarttv/ert/getFeedContent.php?categoryIdnam=enimerosi";
+
+            http.request({
+                url: url1,
+                method: "GET",
+                }).then(response => {
+                this.enimerosi = response.content.toJSON().elems[0].items;
+                }, error => {
+                console.error(error);
+                });      
+
+            var url2="http://hbbtv.ert.gr/pub/smarttv/ert/feed_NewLayout.php";
+
+            http.request({
+                url: url2,
+                method: "GET",
+                }).then(response => {
+                this.seires = response.content.toJSON().services.filter(function (chain) {
+                        return chain.masterCategory === "TV &Sigma;&epsilon;&iota;&rho;&#941;&sigmaf;";})[0].items;
+                this.documentaries = response.content.toJSON().services.filter(function (chain) {
+                        return chain.masterCategory === "&Xi;&#941;&nu;&alpha; &Nu;&tau;&omicron;&kappa;&iota;&mu;&alpha;&nu;&tau;&#941;&rho;";})[0].items;
+                this.eldocumentaries = response.content.toJSON().services.filter(function (chain) {
+                        return chain.masterCategory === "&Epsilon;&lambda;&lambda;&eta;&nu;&iota;&kappa;&#940; &Nu;&tau;&omicron;&kappa;&iota;&mu;&alpha;&nu;&tau;&#941;&rho;";})[0].items;
+                this.paidika = response.content.toJSON().services.filter(function (chain) {
+                        return chain.masterCategory === "&Delta;&iota;&alpha;&sigma;&kappa;&#941;&delta;&alpha;&sigma;&eta;";})[0].items;
+                }, error => {
+                console.error(error);
+                });
+              
+        },        
+        data() {
+            return {
+                movies: [ ],
+                seires: [ ],
+                documentaries: [ ],
+                eldocumentaries: [ ],                
+                enimerosi: [ ],
+                paidika: [ ],
+                idx: 0,
+                ok: false,
+            };
+        }
+    };
+</script>
+
+<style scoped lang="scss">
+    // Start custom common variables
+    @import '~@nativescript/theme/scss/variables/blue';
+    // End custom common variables
+
+    // Custom styles
+</style>

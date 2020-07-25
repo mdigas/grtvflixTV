@@ -30,18 +30,8 @@
     background-color: #252526;
 }
 .card {
-    background-color: #000000;
+    background-color: transparent;
     margin: 10px;
-    border-width: 4;
-    border-color: #000000;
-    border-style: solid;
-}
-.card:focused {
-    background-color: #000000;
-    margin: 10px;
-    border-width: 4;
-    border-color: #E99935;
-    border-style: solid;
 }
 .dm{
     margin-top: 10px;
@@ -92,7 +82,24 @@
 }
 
 .btnDpad{
-    background-color: #000000;  
+    height: 194px;
+    width: 346px;
+    background-color:transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.btnDpad:focused{
+    height: 194px;
+    width: 346px;
+    background-color:transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-width: 4;
+    border-color: #E99935;
+    border-style: solid;
 }
 
 .h1 {

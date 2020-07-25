@@ -20,16 +20,12 @@ androidx.appcompat.app.AppCompatActivity.extend("org.ertflixtv.MainActivity", {
         if(this.getCurrentFocus()){
         // let's highlight the element that currently has the focus
         const tnsButton = this.getCurrentFocus()["jsview"];
-        //if(tnsButton && tnsButton.id === "menu" && event.getKeyCode() === android.view.KeyEvent.KEYCODE_DPAD_LEFT ){
-        //     tnsButton.notify({eventName: "tap", object: tnsButton});}
         if (tnsButton && tnsButton !== this.highlightedElement) {
             if(tnsButton.id === "menu" && event.getKeyCode() === android.view.KeyEvent.KEYCODE_DPAD_LEFT ){
                 tnsButton.notify({eventName: "tap", object: tnsButton});}
             tnsButton.addPseudoClass("focused");
-            tnsButton.parent.addPseudoClass("focused");
             if (this.highlightedElement) {
                 this.highlightedElement.deletePseudoClass("focused");
-                this.highlightedElement.parent.deletePseudoClass("focused");
                 }
             this.highlightedElement = tnsButton;
         }

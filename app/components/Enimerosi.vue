@@ -11,9 +11,8 @@
             </StackLayout>
             <ScrollView orientation="horizontal" row="0" col="0" colSpan="3" class="stdown1" >
                 <StackLayout orientation="horizontal" >
-                    <GridLayout v-for="(enim, indexe) in enimerosi" rows="200,1" columns="350" class="card" >
-                        <Image row="0" col="0" :src="enim.image" class="card" loadMode="async" stretch="aspectFill"  @tap="onItemTap(indexe)"  />
-                         <Button row="1" col="0" :id="index" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap(indexe)" />                        
+                    <GridLayout v-for="(enim, indexe) in enimerosi" rows="194" columns="346" class="card" >
+                         <Button row="0" col="0" class="btnDpad"  width="346" height="194" :backgroundImage="enim.image" @loaded="elementLoaded($event)" @tap="onItemTap(indexe)" />                        
                     </GridLayout>
                 </StackLayout>
             </ScrollView> 

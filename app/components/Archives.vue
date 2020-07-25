@@ -10,9 +10,8 @@
             </StackLayout>
             <ScrollView orientation="horizontal" row="0" col="0" colSpan="3" class="stdown1" >
                 <StackLayout orientation="horizontal" >
-                    <GridLayout v-for="(seira, index) in archives" rows="200,1" columns="350" class="card" >
-                        <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+seira.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap(index)" />
-                        <Button row="1" col="0" :id="index" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap(index)" />
+                    <GridLayout v-for="(seira, index) in archives" rows="194" columns="346" class="card" >
+                        <Button row="0" col="0" class="btnDpad"  width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index)" />
                     </GridLayout>
                 </StackLayout>
             </ScrollView>
@@ -29,7 +28,7 @@
         methods: {
             elementLoaded(args) {
                 const view = args.object;
-                view.android["jsview"] = args.object;
+                view.android["jsview"] = args.object;              
             },
             onItemTap: function(args) {
                 console.log("Item with index: " + args + " tapped");

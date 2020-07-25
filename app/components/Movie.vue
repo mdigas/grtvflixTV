@@ -9,7 +9,7 @@
                 <HtmlView class="h4" :html="mv.short_desc" style="color: white;" />
                 <Label  v-if="mv.expiration_date" class="dm" :text="'Διαθέσιμο μέχρι: '+mv.expiration_date"  />
                 <GridLayout columns="auto,20,auto" rows="auto" style="margin-top: 100px;" >
-                    <Button row="0" col="0" class="nav-btn" text="" @loaded="elementLoaded($event)" @tap="onItemTap" >    
+                    <Button row="0" col="0" class="nav-btn" text="" @loaded="elementLoaded($event)" @tap="onTapPlay" >    
                         <FormattedString><Span text="Προβολή" ></Span></FormattedString>
                     </Button>
                     <Button row="0" col="2" class="nav-btn" @loaded="elementLoaded($event)" @tap="onmoreTap">
@@ -32,10 +32,8 @@
                 const view = args.object;
                 view.android["jsview"] = args.object;
             },
-            onItemTap: function(args) {
-               // utilsModule.openUrl("http:\/\/hbbtv2.ert.gr\/video.php\/geo\/w\/vid\/6983c47bbb1a7c61f586ca7088d3b4b2.mp4");
+            onTapPlay: function(args) {
             const i = new android.content.Intent(android.content.Intent.ACTION_VIEW);
-            //i.setPackage("com.mxtech.videoplayer.ad");
             i.setDataAndType(android.net.Uri.parse(this.mv.mp4), "video/mp4");
             application.android.foregroundActivity.startActivity(i);
             },

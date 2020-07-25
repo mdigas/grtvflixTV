@@ -1,7 +1,7 @@
 <template>
     <Page class="page" actionBarHidden="true" >
-        <ScrollView  orientation="vertical">
-            <StackLayout v-if="ok" orientation="vertical">
+        <ScrollView  orientation="vertical" >
+            <StackLayout v-if="ok" orientation="vertical" >
                 <GridLayout columns="50,350,*" rows="auto" >
                     <Image row="0" col="0" colSpan="3" :src="movies[idx].bg_img_url" loadMode="async" horizontalAlignment="right" stretch="fill"  /> 
                     <StackLayout row="0" col="0" colSpan="2" class="stdown">
@@ -12,9 +12,8 @@
                     </StackLayout>
                     <ScrollView orientation="horizontal" row="0" col="0" colSpan="3" class="stdown1" >
                         <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(movie, index) in movies" rows="200,1" columns="350" class="card"  >
-                                <Image row="0" col="0" :src="movie.image"  class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap(index)" />
-                                <Button row="1" col="0" :id="index" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap(index)" />
+                            <GridLayout v-for="(movie, index) in movies" rows="194" columns="346" class="card"  >
+                                <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="movie.image" @loaded="elementLoaded($event)" @tap="onItemTap(index)" />
                             </GridLayout>
                         </StackLayout>
                     </ScrollView>   
@@ -31,8 +30,8 @@
         methods: {
         elementLoaded(args) {
             const view = args.object;
-            view.android["jsview"] = args.object;
-            },            
+            view.android["jsview"] = args.object;        
+            },                           
             onItemTap: function(args) {
                 console.log("Item with index: " + args + " tapped");
                 this.$goto('Movie', {

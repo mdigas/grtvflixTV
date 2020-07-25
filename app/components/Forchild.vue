@@ -12,27 +12,24 @@
                     <Label text="Παιδικά" class="h2" />                        
                     <ScrollView orientation="horizontal">
                         <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(paid, index) in paidika" rows="200,1" columns="350" class="card"  >
-                                <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+paid.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap(index, 1)" />
-                                <Button row="1" col="0" :id="index" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap(index, 1)" />
+                            <GridLayout v-for="(paid, index) in paidika" rows="194" columns="346" class="card"  >
+                                <Button row="0" col="0" :id="'c'+index" class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+paid.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 1)" />
                             </GridLayout>
                         </StackLayout>
                     </ScrollView>   
                     <Label text="Μένουμε σπίτι" class="h2" />                        
                     <ScrollView orientation="horizontal">
                         <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(mn, index) in mensp" rows="200,1" columns="350" class="card" >
-                                <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+mn.menu_img_url" class="card" loadMode="async" stretch="aspectFill"  @tap="onItemTap(index, 2)" />
-                                <Button row="1" col="0" :id="index" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(index, 2)" />
+                            <GridLayout v-for="(mn, index) in mensp" rows="194" columns="346" class="card" >
+                                <Button row="1" col="0" class="btnDpad"  width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+mn.menu_img_url" @loaded="elementLoaded($event)"  @tap="onItemTap(index, 2)" />
                             </GridLayout>
                         </StackLayout>
                     </ScrollView>   
                     <Label text="Ιστορίες" class="h2" />                        
                     <ScrollView orientation="horizontal">
                         <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(ist, index) in istories" rows="200,1" columns="350" class="card"  >
-                                <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+ist.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap(index, 3)" />
-                                <Button row="1" col="0" :id="index" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap(index, 3)" />
+                            <GridLayout v-for="(ist, index) in istories" rows="194" columns="346" class="card"  >
+                                <Button row="1" col="0" class="btnDpad"  width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+ist.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 3)" />
                             </GridLayout>
                         </StackLayout>
                     </ScrollView>   
@@ -51,7 +48,7 @@
         methods: {
             elementLoaded(args) {
                 const view = args.object;
-                view.android["jsview"] = args.object;
+                view.android["jsview"] = args.object;              
             },
             onItemTap: function(args, no) {
                 var seira = "";

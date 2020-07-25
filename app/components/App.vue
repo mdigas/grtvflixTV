@@ -1,5 +1,5 @@
 <template>
-    <GridLayout class="nav" columns="auto, *">
+    <GridLayout class="nav" columns="auto, *" >
        <!-- <Nav col="0" :visibility="ok ? 'visible' : 'collapsed'" /> -->
         <GridLayout col="0" rows="50" columns="50">
             <Button row="0" col="0" id="menu" :text="ok ? '<' : '>'" class="nav-btn" @loaded="elementLoaded($event)" @tap="onDrawerButtonTap"></Button>
@@ -9,7 +9,7 @@
             <Label class="h5label" text="ERTflixTV"></Label>
             <Label class="h6label" text="ertflix@protonmail.com"></Label>
             <ScrollView  orientation="vertical">
-                <GridLayout rows="auto, auto, auto, auto, auto, auto, auto, auto, auto, auto" columns="150"  >
+                <GridLayout rows="auto, auto, auto, auto, auto, auto, auto, auto, auto, auto" columns="150" >
                     <Button class="nav-btn" text='Αρχική' @loaded="elementLoaded($event)" @tap="goTo('Home')" row="0" col="0" />
                     <Button class="nav-btn" text='Ταινίες' @loaded="elementLoaded($event)" @tap="goTo('Movies')" row="1" col="0" />
                     <Button class="nav-btn" text='Σειρές' @loaded="elementLoaded($event)" @tap="goTo('Serials')" row="2" col="0" />
@@ -40,7 +40,7 @@
             elementLoaded(args) {
                 const view = args.object;
                 view.android["jsview"] = args.object;
-            },
+            },           
             goTo(name) {
                 this.ok = 0;
                 //,{ clearHistory: true } can be added to get rid of the back button

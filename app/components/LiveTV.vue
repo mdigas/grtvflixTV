@@ -1,46 +1,36 @@
 <template>
     <Page class="page" actionBarHidden="true" >
-        <ScrollView>
-        <WrapLayout>
-            <GridLayout rows="150,1" columns="150" class="card" >
-                <Image row="0" col="0" class="livetv" src="~/img/ert1.png" @tap="onItemTap(0)" />
-                <Button row="1" col="0" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(0)" />
+        <ScrollView >
+        <WrapLayout >
+            <GridLayout rows="150" columns="150" class="card" >
+                <Button row="0" col="0" class="btnDpad"  width="150" height="150" backgroundImage="~/img/ert1.png" @loaded="elementLoaded($event)"  @tap="onItemTap(0)" />
             </GridLayout> 
-            <GridLayout rows="150,1" columns="150" class="card" >
-                <Image class="livetv" src="~/img/ert2.png" @tap="onItemTap(1)" />
-                <Button row="1" col="0" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(1)" />
+            <GridLayout rows="150" columns="150" class="card" >
+                <Button row="0" col="0" class="btnDpad"  width="150" height="150" backgroundImage="~/img/ert2.png" @loaded="elementLoaded($event)"  @tap="onItemTap(1)" />
             </GridLayout> 
-            <GridLayout rows="150,1" columns="150" class="card" >
-                <Image class="livetv" src="~/img/ert3.png" @tap="onItemTap(2)"/>
-                <Button row="1" col="0" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(2)" />
+            <GridLayout rows="150" columns="150" class="card" >
+                <Button row="0" col="0" class="btnDpad"  width="150" height="150" backgroundImage="~/img/ert3.png" @loaded="elementLoaded($event)"  @tap="onItemTap(2)" />
             </GridLayout> 
-            <GridLayout rows="150,1" columns="150" class="card" >
-                <Image class="livetv" src="~/img/ertsport.png" @tap="onItemTap(3)"/>
-                <Button row="1" col="0" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(3)" />
+            <GridLayout rows="150" columns="150" class="card" >
+                <Button row="0" col="0" class="btnDpad"  width="150" height="150" backgroundImage="~/img/ertsport.png" @loaded="elementLoaded($event)"  @tap="onItemTap(3)" />
             </GridLayout> 
-            <GridLayout rows="150,1" columns="150" class="card" >
-                <Image class="livetv" src="~/img/ertworld.png" @tap="onItemTap(4)" />
-                <Button row="1" col="0" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(4)" />
+            <GridLayout rows="150" columns="150" class="card" >
+                <Button row="0" col="0" class="btnDpad"  width="150" height="150" backgroundImage="~/img/ertworld.png" @loaded="elementLoaded($event)"  @tap="onItemTap(4)" />
             </GridLayout> 
-            <GridLayout rows="150,1" columns="150" class="card" >
-                <Image class="livetv" src="~/img/ertplay1.png" @tap="onItemTap(5)" />
-                <Button row="1" col="0" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(5)" />
+            <GridLayout rows="150" columns="150" class="card" >
+                <Button row="0" col="0" class="btnDpad" width="150" height="150" backgroundImage="~/img/ertplay1.png" @loaded="elementLoaded($event)"  @tap="onItemTap(5)" />
             </GridLayout> 
-            <GridLayout rows="150,1" columns="150" class="card" >
-                <Image class="livetv" src="~/img/ertplay2.png" @tap="onItemTap(6)" />
-                <Button row="1" col="0" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(6)" />
+            <GridLayout rows="150" columns="150" class="card" >
+                <Button row="0" col="0" class="btnDpad" width="150" height="150" backgroundImage="~/img/ertplay2.png" @loaded="elementLoaded($event)"  @tap="onItemTap(6)" />
             </GridLayout> 
-            <GridLayout rows="150,1" columns="150" class="card" >
-                <Image class="livetv" src="~/img/ertplay3.png" @tap="onItemTap(7)" />
-                <Button row="1" col="0" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(7)" />
+            <GridLayout rows="150" columns="150" class="card" >
+                <Button row="0" col="0" class="btnDpad" width="150" height="150" backgroundImage="~/img/ertplay3.png" @loaded="elementLoaded($event)"  @tap="onItemTap(7)" />
             </GridLayout> 
-            <GridLayout rows="150,1" columns="150" class="card" >
-                <Image class="livetv" src="~/img/ertplay4.png" @tap="onItemTap(8)" />
-                <Button row="1" col="0" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(8)" />
+            <GridLayout rows="150" columns="150" class="card" >
+                <Button row="0" col="0" class="btnDpad" width="150" height="150" backgroundImage="~/img/ertplay4.png" @loaded="elementLoaded($event)"  @tap="onItemTap(8)" />
             </GridLayout> 
-            <GridLayout rows="150,1" columns="150" class="card" >
-                <Image class="livetv" src="~/img/ertplay5.png" @tap="onItemTap(9)" />
-                <Button row="1" col="0" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onItemTap(9)" />
+            <GridLayout rows="150" columns="150" class="card" >
+                <Button row="0" col="0" class="btnDpad" width="150" height="150" backgroundImage="~/img/ertplay5.png" @loaded="elementLoaded($event)"  @tap="onItemTap(9)" />
             </GridLayout> 
          </WrapLayout>
         </ScrollView>  
@@ -54,8 +44,8 @@
         methods: {
             elementLoaded(args) {
                 const view = args.object;
-                view.android["jsview"] = args.object;
-            },             
+                view.android["jsview"] = args.object;             
+            },                         
             onItemTap: function(args) {
                 if (args == 2){
                     const i = new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse("vnd.youtube://" + this.videourl[args]));

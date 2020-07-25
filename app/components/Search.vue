@@ -9,10 +9,9 @@
                     <Span text="  Αναζήτηση" class="h2"></Span></FormattedString></Label> 
                 <SearchBar v-model="searchQuery" hint="Αναζήτηση" textFieldHintColor="#FFFFFF" class="search" @submit="onSearchSubmit" />
                     <WrapLayout>
-                        <GridLayout  v-for="(ekp, index) in ekpompes" rows="200,1,auto" columns="350" class="card" >
-                            <Image row="0" col="0" :src="ekp.bild" class="card"  loadMode="async" stretch="aspectFill"  @tap="onTapPlay(index)" />
-                            <Button row="1" col="0" :id="index" class="btnDpad" @loaded="elementLoaded($event)"  @tap="onTapPlay(index)" />  
-                            <HtmlView row="2" col="0" class="lbl" :html="ekp.title" style="color: white;" />
+                        <GridLayout  v-for="(ekp, index) in ekpompes" rows="196,auto" columns="346" class="card" >
+                            <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="ekp.bild" @loaded="elementLoaded($event)"  @tap="onTapPlay(index)" />  
+                            <HtmlView row="1" col="0" class="lbl" :html="ekp.title" style="color: white;" />
                         </GridLayout>
                     </WrapLayout>   
             </StackLayout>

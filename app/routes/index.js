@@ -17,6 +17,7 @@ const routes = {
     Home: Home,
     Movies: Movies,
     Movie: Movie,
+    MovieDetail: MovieDetail,    
     Seires: Seires,
     Serials: Serials,
     Enimerosi: Enimerosi,

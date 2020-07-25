@@ -1,67 +1,61 @@
 <template>
     <Page class="page" actionBarHidden="true" >
-        <ScrollView  orientation="vertical">
-        <StackLayout v-if="ok" orientation="vertical">
+        <ScrollView  orientation="vertical" >
+        <StackLayout v-if="ok" orientation="vertical" >
         <GridLayout columns="50,350,*" rows="auto" >
              <Image row="0" col="0" colSpan="3" :src="movies[idx].bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
-             <StackLayout row="0" col="0" colSpan="2" class="stdown">
-                <Label class="h4" :text="movies[idx].title" style="color: white;" />
-                <Label class="diar" :text="'Διάρκεια: '+movies[idx].dur" style="color: white;" />
-                <Label class="desc" :text="movies[idx].short_desc" row="0" col="0" colSpan="2" textWrap="True" />
+             <StackLayout row="0" col="0" colSpan="2" class="stdown" >
+                <Label class="h4" :text="movies[idx].title" style="color: white;"  />
+                <Label class="diar" :text="'Διάρκεια: '+movies[idx].dur" style="color: white;"  />
+                <Label class="desc" :text="movies[idx].short_desc" row="0" col="0" colSpan="2" textWrap="True"  />
                 <Label class="dm" :text="'Διαθέσιμο μέχρι: '+movies[idx].expiration_date"  />
             </StackLayout>
-            <StackLayout row="0" col="0" colSpan="3" class="stdown1">
-                <Label text="Ταινίες" class="h2" />
+            <StackLayout row="0" col="0" colSpan="3" class="stdown1" >
+                <Label text="Ταινίες" class="h2"  />
                 <ScrollView orientation="horizontal" >
                     <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(movie, index) in movies" rows="200,1" columns="350" class="card"  >
-                            <Image row="0" col="0" :src="movie.image"  class="card" loadMode="async" horizontalAlignment="center" verticalAlignment="center" stretch="aspectFit" @tap="onItemTap1(index)" />
-                            <Button row="1" col="0" :id="1" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap1(index)" />
+                        <GridLayout v-for="(movie, index) in movies" rows="194" columns="346" class="card" >
+                            <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="movie.image" @loaded="elementLoaded($event)" @tap="onItemTap1(index)" /> 
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>
-                <Label text="Σειρές" class="h2" />
-                <ScrollView orientation="horizontal">
+                <Label text="Σειρές" class="h2"  />
+                <ScrollView orientation="horizontal" >
                     <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(seira, indexs) in seires" rows="200,1" columns="350" class="card"  >
-                            <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+seira.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap2(indexs)" />
-                            <Button row="1" col="0"  class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs)" />
+                        <GridLayout v-for="(seira, indexs) in seires" rows="194" columns="346" class="card" >
+                            <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs)" />
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>
-                <Label text="Ξένα Ντοκιμαντέρ" class="h2" />
-                <ScrollView orientation="horizontal">
+                <Label text="Ξένα Ντοκιμαντέρ" class="h2"  />
+                <ScrollView orientation="horizontal" >
                     <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(doc, indexd) in documentaries" rows="200,1" columns="350" class="card"  >
-                            <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+doc.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap3(indexd)" />
-                            <Button row="1" col="0"  class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap3(indexd)" />
+                        <GridLayout v-for="(doc, indexd) in documentaries" rows="194" columns="346" class="card" >
+                            <Button row="0" col="0"  class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+doc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap3(indexd)" />
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>
                 <Label text="Ελληνικά Ντοκιμαντέρ" class="h2" />
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(eldoc, index) in eldocumentaries" rows="200,1" columns="350" class="card"  >
-                            <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+eldoc.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap6(index)" />
-                            <Button row="1" col="0"  class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap6(index)" />                            
+                        <GridLayout v-for="(eldoc, index) in eldocumentaries" rows="194" columns="346" class="card" >
+                            <Button row="0" col="0"  class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+eldoc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap6(index)" />                            
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>            
                 <Label text="Ενημέρωση" class="h2" />
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(enim, index) in enimerosi" rows="200,1" columns="350" class="card"  >
-                            <Image row="0" col="0" :src="enim.image" class="card" loadMode="async" stretch="aspectFill"  @tap="onItemTap5(index)" />
-                            <Button row="1" col="0"  class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap5(index)" />                            
+                        <GridLayout v-for="(enim, index) in enimerosi" rows="194" columns="346" class="card" >
+                            <Button row="0" col="0"  class="btnDpad" width="346" height="194" :backgroundImage="enim.image" @loaded="elementLoaded($event)" @tap="onItemTap5(index)" />                            
                         </GridLayout>
                     </StackLayout>
                 </ScrollView> 
                 <Label text="Παιδικά" class="h2" />                        
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(paid, index) in paidika" rows="200,1" columns="350" class="card"  >
-                            <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+paid.menu_img_url" class="card" loadMode="async" stretch="aspectFill"  @tap="onItemTap4(index)" />
-                            <Button row="1" col="0"  class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap4(index)" />                            
+                        <GridLayout v-for="(paid, index) in paidika" rows="194" columns="346" class="card" >
+                            <Button row="0" col="0"  class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+paid.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap4(index)" />                            
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>   
@@ -82,7 +76,7 @@
             elementLoaded(args) {
                 const view = args.object;
                 view.android["jsview"] = args.object;
-            },                    
+            },                              
             onItemTap1: function(args) {
                 console.log("Item with index: " + args + " tapped");
                 this.$goto('Movie', {

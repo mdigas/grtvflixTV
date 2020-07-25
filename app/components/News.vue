@@ -30,12 +30,10 @@
         methods: {
             elementLoaded(args) {
                 const view = args.object;
-                view.android["jsview"] = args.object;
+                view.android["jsview"] = args.object;                             
             },
             onItemTap: function(args) {
-               // utilsModule.openUrl("http:\/\/hbbtv2.ert.gr\/video.php\/geo\/w\/vid\/6983c47bbb1a7c61f586ca7088d3b4b2.mp4");
             const i = new android.content.Intent(android.content.Intent.ACTION_VIEW);
-            //i.setPackage("com.mxtech.videoplayer.ad");
             i.setDataAndType(android.net.Uri.parse(this.mv.mp4), "video/mp4");
             application.android.foregroundActivity.startActivity(i);
             },

@@ -12,18 +12,16 @@
                 <Label text="Web Σειρές" class="h2" />
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(seira, indexsw) in seiresweb" rows="200,1" columns="350" class="card" >
-                            <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+seira.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap2(indexsw,1)" />
-                            <Button row="1" col="0" :id="index" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap2(indexsw,1)" />
+                        <GridLayout v-for="(seira, indexsw) in seiresweb" rows="194" columns="346" class="card" >
+                            <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap2(indexsw,1)" />
                         </GridLayout>
                     </StackLayout>
                 </ScrollView> 
                 <Label text="Σειρές" class="h2" />
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(seira, indexs) in seires" rows="200,1" columns="350" class="card" >
-                            <Image row="0" col="0" :src="'http://hbbtv.ert.gr'+seira.menu_img_url" class="card" loadMode="async" stretch="aspectFill" @tap="onItemTap2(indexs,2)" />
-                            <Button row="1" col="0" :id="index" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs,2)" />
+                        <GridLayout v-for="(seira, indexs) in seires" rows="194" columns="346" class="card" >
+                            <Button row="0" col="0" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs,2)" />
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>   
@@ -41,7 +39,7 @@
         methods: {
             elementLoaded(args) {
                 const view = args.object;
-                view.android["jsview"] = args.object;
+                view.android["jsview"] = args.object;              
             },
             onItemTap2: function(args, no) {
                 var seira = "";

@@ -12,16 +12,16 @@
                 <Label text="Web Σειρές" class="h2" />
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(seira, indexsw) in seiresweb" rows="194" columns="346" class="card" >
-                            <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap2(indexsw,1)" />
+                        <GridLayout v-for="(seira, indexsw) in seiresweb" rows="147" columns="273" class="card" >
+                            <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap2(indexsw,1)" />
                         </GridLayout>
                     </StackLayout>
                 </ScrollView> 
                 <Label text="Σειρές" class="h2" />
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(seira, indexs) in seires" rows="194" columns="346" class="card" >
-                            <Button row="0" col="0" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs,2)" />
+                        <GridLayout v-for="(seira, indexs) in seires" rows="147" columns="273" class="card" >
+                            <Button row="0" col="0" width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs,2)" />
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>   

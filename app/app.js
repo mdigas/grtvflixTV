@@ -13,6 +13,9 @@ Vue.prototype.$goto = function (to, options) {
     this.$navigateTo(this.$router[to], options)
 }
 
+const orientation = require("nativescript-orientation");
+console.log(orientation.getOrientation());
+
 new Vue({
     render: h => h(App)
 }).$start();

@@ -2,18 +2,18 @@
     <Page class="page" actionBarHidden="true" >
         <ScrollView  orientation="vertical" >
             <StackLayout v-if="ok" orientation="vertical" >
-                <GridLayout columns="50,350,*" rows="auto" >
+                <GridLayout columns="50,400,*" rows="auto" >
                     <Image row="0" col="0" colSpan="3" :src="movies[idx].bg_img_url" loadMode="async" horizontalAlignment="right" stretch="fill"  /> 
                     <StackLayout row="0" col="0" colSpan="2" class="stdown">
                         <Label class="h4" :text="movies[idx].title" style="color: white;" />
-                        <Label class="diar" :text="'Διάρκεια: '+movies[idx].dur" style="color: white;" />
+                        <Label class="diar" :text="'Διάρκεια: '+movies[idx].dur" style="color: orange;" />
                         <Label class="desc" :text="movies[idx].short_desc" row="0" col="0" colSpan="2" textWrap="True" />
                         <Label class="dm" :text="'Διαθέσιμο μέχρι: '+movies[idx].expiration_date"  />
                     </StackLayout>
                     <ScrollView orientation="horizontal" row="0" col="0" colSpan="3" class="stdown1" >
                         <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(movie, index) in movies" rows="194" columns="346" class="card"  >
-                                <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="movie.image" @loaded="elementLoaded($event)" @tap="onItemTap(index)" />
+                            <GridLayout v-for="(movie, index) in movies" rows="147" columns="273" class="card"  >
+                                <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="movie.image" @loaded="elementLoaded($event)" @tap="onItemTap(index)" />
                             </GridLayout>
                         </StackLayout>
                     </ScrollView>   

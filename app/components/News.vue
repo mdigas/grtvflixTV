@@ -5,9 +5,9 @@
         <GridLayout columns="50,350,auto" rows="auto" >
              <StackLayout row="0" col="0" colSpan="2" class="stdown">
                 <Label class="h4" :text="mv.title" style="color: white;" />
-                <Label class="diar" :text="'Διάρκεια: '+mv.dur" style="color: white;" />
+                <Label class="diar" :text="'Διάρκεια: '+mv.dur" style="color: orange;" />
                 <Label class="desc" :text="mv.short_desc" row="0" col="0" colSpan="2" textWrap="True" />
-                <Label class="dm" :text="'Διαθέσιμο μέχρι: '+mv.expiration_date"  />
+                <Label v-if="mv.expiration_date" class="dm" :text="'Διαθέσιμο μέχρι: '+mv.expiration_date"  />
                 <GridLayout columns="auto,20,auto" rows="auto" style="margin-top: 100px;" >
                     <Button row="0" col="0" class="nav-btn" text="" @loaded="elementLoaded($event)" @tap="onItemTap" >    
                         <FormattedString><Span text="Προβολή" ></Span></FormattedString>

@@ -12,24 +12,24 @@
                     <Label text="Παιδικά" class="h2" />                        
                     <ScrollView orientation="horizontal">
                         <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(paid, index) in paidika" rows="194" columns="346" class="card"  >
-                                <Button row="0" col="0" :id="'c'+index" class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+paid.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 1)" />
+                            <GridLayout v-for="(paid, index) in paidika" rows="147" columns="273" class="card"  >
+                                <Button row="0" col="0" :id="'c'+index" class="btnDpad" width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+paid.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 1)" />
                             </GridLayout>
                         </StackLayout>
                     </ScrollView>   
                     <Label text="Μένουμε σπίτι" class="h2" />                        
                     <ScrollView orientation="horizontal">
                         <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(mn, index) in mensp" rows="194" columns="346" class="card" >
-                                <Button row="1" col="0" class="btnDpad"  width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+mn.menu_img_url" @loaded="elementLoaded($event)"  @tap="onItemTap(index, 2)" />
+                            <GridLayout v-for="(mn, index) in mensp" rows="147" columns="273" class="card" >
+                                <Button row="1" col="0" class="btnDpad"  width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+mn.menu_img_url" @loaded="elementLoaded($event)"  @tap="onItemTap(index, 2)" />
                             </GridLayout>
                         </StackLayout>
                     </ScrollView>   
-                    <Label text="Ιστορίες" class="h2" />                        
+                    <Label v-if="ist" text="Ιστορίες" class="h2" />                        
                     <ScrollView orientation="horizontal">
                         <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(ist, index) in istories" rows="194" columns="346" class="card"  >
-                                <Button row="1" col="0" class="btnDpad"  width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+ist.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 3)" />
+                            <GridLayout v-for="(ist, index) in istories" rows="147" columns="273" class="card"  >
+                                <Button row="1" col="0" class="btnDpad"  width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+ist.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 3)" />
                             </GridLayout>
                         </StackLayout>
                     </ScrollView>   

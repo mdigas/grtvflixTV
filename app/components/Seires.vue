@@ -1,28 +1,29 @@
 <template>
     <Page class="page" actionBarHidden="true" >
-        <ScrollView :style="bcpage" >    
-            <StackLayout orientation="vertical" style="margin-top:200px;" >
-                <GridLayout columns="400" rows="auto" >
-                    <StackLayout row="0" col="0" >
-                        <HtmlView class="h5" :html="mv.title" style="color: white;" />
-                        <HtmlView class="h5" :html="mv.short_desc" style="color: white;" />
-                    </StackLayout>             
-                </GridLayout>
-                <ScrollView orientation="horizontal" style="margin-top: 100px;"  >
-                    <StackLayout orientation="horizontal" >
-                        <GridLayout  v-for="(episode, index) in episodes" rows="194, auto, auto" columns="346" class="card"  >
-                            <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="episode.image" @loaded="elementLoaded($event)" @tap="onTapPlay(index)" />
-                            <HtmlView v-if="episode.title" row="2" col="0" :html="episode.title" style="color: white;" />
-                            <Label class="dm" row="1" col="0" ><FormattedString>
-                                <Span v-if="episode.season_num" :text="'Σ:'+episode.season_num+' '" />
-                                <Span v-if="episode.episode_num" :text="'E:'+episode.episode_num" />
-                                <span v-if="episode.expiration_date" :text="'   Διαθ.Μέχρι: '+episode.expiration_date" /></FormattedString>
+        <GridLayout columns="50,400,*" rows="265, *" >
+             <Image row="0" col="0" colSpan="3" rowSpan="2" :src="'http://hbbtv.ert.gr'+this.$props.seira.bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
+             <StackLayout row="0" col="0" colSpan="2" class="stdown" >
+                <HtmlView class="h5" :html="mv.title" style="color: white;" />
+                <HtmlView class="h6" :html="mv.short_desc" style="color: white;" />
+            </StackLayout>        
+            <ScrollView row="1" col="0" colSpan="3" orientation="horizontal" >
+                <StackLayout orientation="horizontal" >
+                    <GridLayout  v-for="(episode, index) in episodes" rows="147, auto" columns="273" class="card" >
+                        <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="episode.image" @loaded="elementLoaded($event)" @tap="onTapPlay(index)" />
+                        <StackLayout row="1" col="0" class="subcard" >
+                            <HtmlView v-if="episode.title" :html="episode.title" class="eptitle" />
+                            <Label v-if="episode.expiration_date" class="epsmalld" :text="'Διάρκεια: '+episode.dur+'    Διαθ.Μέχρι: '+episode.expiration_date" />
+                            <Label v-if="episode.season_num || episode.episode_num" class="epsmall" >
+                                <FormattedString>
+                                    <Span v-if="episode.season_num" :text="'Σ:'+episode.season_num+' - '" />
+                                    <Span v-if="episode.episode_num" :text="'E:'+episode.episode_num" />
+                                </FormattedString>
                             </Label>
-                        </GridLayout>
-                    </StackLayout>
-                </ScrollView>     
-            </StackLayout>      
-        </ScrollView>
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+            </ScrollView>     
+        </GridLayout>
     </Page>
 </template>
 

@@ -1,10 +1,10 @@
 <template>
     <GridLayout class="nav" columns="auto, *" >
        <!-- <Nav col="0" :visibility="ok ? 'visible' : 'collapsed'" /> -->
-        <GridLayout col="0" rows="50" columns="50">
+        <GridLayout col="0" rows="50" columns="50" class="page1" >
             <Button row="0" col="0" id="menu" :text="ok ? '<' : '>'" class="nav-btn" @loaded="elementLoaded($event)" @tap="onDrawerButtonTap"></Button>
         </GridLayout>
-        <StackLayout row="1" col="0" :visibility="ok ? 'visible' : 'collapsed'">
+        <StackLayout row="0" col="0" :visibility="ok ? 'visible' : 'collapsed'" class="page1"  >
             <Image src="res://icon" width="72" height="72"></Image>
             <Label class="h5label" text="ERTflixTV"></Label>
             <Label class="h6label" text="ertflix@protonmail.com"></Label>
@@ -23,8 +23,8 @@
                 </GridLayout>
             </ScrollView>
         </StackLayout>
-        <ContentView row="0" col="1" >
-            <Frame>
+        <ContentView row="0" col="1"  >
+            <Frame class="nav">
                 <Home />
             </Frame>
         </ContentView>

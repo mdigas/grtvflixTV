@@ -7,11 +7,11 @@
             <StackLayout>
                     <Label col="0" ><FormattedString><Span text.decode="&#xf002;" class="nt-icon fas"></Span>
                     <Span text="  Αναζήτηση" class="h2"></Span></FormattedString></Label> 
-                <SearchBar v-model="searchQuery" hint="Αναζήτηση" textFieldHintColor="#FFFFFF" class="search" @submit="onSearchSubmit" />
+                <SearchBar v-model="searchQuery" textFieldHintColor="#FFFFFF" class="search" @submit="onSearchSubmit" />
                     <WrapLayout>
-                        <GridLayout  v-for="(ekp, index) in ekpompes" rows="196,auto" columns="346" class="card" >
-                            <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="ekp.bild" @loaded="elementLoaded($event)"  @tap="onTapPlay(index)" />  
-                            <HtmlView row="1" col="0" class="lbl" :html="ekp.title" style="color: white;" />
+                        <GridLayout  v-for="(ekp, index) in ekpompes" rows="196,auto" columns="273" class="card" >
+                            <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="ekp.bild" @loaded="elementLoaded($event)"  @tap="onTapPlay(index)" />  
+                            <HtmlView row="1" col="0" :html="ekp.title" class="eptitle" />
                         </GridLayout>
                     </WrapLayout>   
             </StackLayout>

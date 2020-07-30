@@ -10,8 +10,8 @@
             </StackLayout>
             <ScrollView orientation="horizontal" row="0" col="0" colSpan="3" class="stdown1">
                 <StackLayout orientation="horizontal" >
-                    <GridLayout v-for="(seira, indexs) in sports" rows="194" columns="346" class="card" >
-                        <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs)" />
+                    <GridLayout v-for="(seira, indexs) in sports" rows="147" columns="273" class="card" >
+                        <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs)" />
                     </GridLayout>
                 </StackLayout>
             </ScrollView>

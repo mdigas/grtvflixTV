@@ -24,14 +24,50 @@
     background-color: #000000;
     font-family: "Roboto", "Roboto-BoldItalic";
     font-weight: bold;
+    margin-top: 27dp;
+    margin-bottom: 27dp;
+    margin-right: 48dp;
+}
+.page1 {
+    background-color: #000000;
+    font-family: "Roboto", "Roboto-BoldItalic";
+    font-weight: bold;
+    margin-top: 27dp;
+    margin-bottom: 27dp;
+    margin-left: 48dp;
 }
 
 .nav {
-    background-color: #252526;
+    background-color: #000000;
 }
+
 .card {
-    background-color: transparent;
-    margin: 10px;
+    margin: 10px;    
+}
+.subcard{
+    background-color: #31303083;    
+}
+
+.eptitle{
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: normal;   
+    margin-left: 10px;  
+    padding: 5px;
+}
+.epsmall{
+    color: rgb(255, 153, 0);
+    font-size: 10px;
+    font-weight: normal;
+    margin-left: 10px;    
+    padding: 5px;
+}
+.epsmalld{
+    color: red;
+    font-size: 10px;
+    font-weight: normal;
+    margin-left: 10px;    
+    padding: 5px;
 }
 .dm{
     margin-top: 10px;
@@ -58,32 +94,32 @@
 
 .nav-btn {
     color: #ffffff;
-    background-color: #252526;
+    background-color: #000000;
     font-family: "Roboto", "Roboto-BoldItalic";
     font-weight: bold;
-    margin: 5;
-    padding: 5;
+    margin: 1;
+    padding: 1;
     font-size: 16;
-    border-width: 4;
+    border-width: 2;
     border-color: #252526;
     border-style: solid;
 }    
 .nav-btn:focused {
     color: #ffffff;
-    background-color: #252526;
+    background-color: #000000;
     font-family: "Roboto", "Roboto-BoldItalic";
     font-weight: bold;
-    margin: 5;
-    padding: 5;
+    margin: 1;
+    padding: 1;
     font-size: 16;
-    border-width: 4;
+    border-width: 2;
     border-color: #E99935;
     border-style: solid;
 }
 
 .btnDpad{
-    height: 194px;
-    width: 346px;
+    height: 147px;
+    width: 273px;
     background-color:transparent;
     background-repeat: no-repeat;
     background-position: center;
@@ -91,8 +127,8 @@
 }
 
 .btnDpad:focused{
-    height: 194px;
-    width: 346px;
+    height: 147px;
+    width: 273px;
     background-color:transparent;
     background-repeat: no-repeat;
     background-position: center;

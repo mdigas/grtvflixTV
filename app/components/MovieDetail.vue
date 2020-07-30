@@ -2,7 +2,7 @@
     <Page class="page" actionBarHidden="true" >
         <ScrollView>
             <StackLayout orientation="vertical">
-               <WebView :src="starthtml+$props.detail+endhtml" class="page" />	
+               <HtmlView class="h6" :html="starthtml+$props.detail+endhtml" />	
             </StackLayout>  
         </ScrollView>
     </Page>         
@@ -13,7 +13,7 @@
         props: ["detail"],
         data() {
             return {
-                starthtml: '<div style="color: white;background-color: black;"',
+                starthtml: '<div>',
                 endhtml: '</div>',
             };
         },

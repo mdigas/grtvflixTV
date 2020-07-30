@@ -2,11 +2,11 @@
     <Page class="page"  actionBarHidden="true" >  
         <ScrollView :style="bcpage"> 
         <StackLayout orientation="vertical">
-        <GridLayout columns="50,350,auto" rows="auto" >
+        <GridLayout columns="50,400,auto" rows="auto" >
              <StackLayout row="0" col="0" colSpan="2" class="stdown">
                 <Label class="h4" :text="mv.title" style="color: white;" />
-                <Label class="diar" :text="'Διάρκεια: '+mv.dur" style="color: white;" />
-                <HtmlView class="h4" :html="mv.short_desc" style="color: white;" />
+                <Label class="diar" :text="'Διάρκεια: '+mv.dur" style="color: orange;" />
+                <HtmlView class="h5" :html="mv.short_desc" style="color: white;" />
                 <Label  v-if="mv.expiration_date" class="dm" :text="'Διαθέσιμο μέχρι: '+mv.expiration_date"  />
                 <GridLayout columns="auto,20,auto" rows="auto" style="margin-top: 100px;" >
                     <Button row="0" col="0" class="nav-btn" text="" @loaded="elementLoaded($event)" @tap="onTapPlay" >    

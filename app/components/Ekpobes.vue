@@ -12,32 +12,32 @@
             <Label text="Ξένα Ντοκιμαντέρ" class="h2" />
             <ScrollView orientation="horizontal">
                 <StackLayout orientation="horizontal" >
-                    <GridLayout v-for="(doc, index) in documentaries" rows="194" columns="346" class="card" >
-                        <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+doc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 1)" />
+                    <GridLayout v-for="(doc, index) in documentaries" rows="147" columns="273" class="card" >
+                        <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+doc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 1)" />
                     </GridLayout>
                 </StackLayout>
             </ScrollView>
             <Label text="Ελληνικά Ντοκιμαντέρ" class="h2" />
             <ScrollView orientation="horizontal">
                 <StackLayout orientation="horizontal" >
-                    <GridLayout v-for="(eldoc, index) in eldocumentaries" rows="194" columns="346" class="card"  >
-                        <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+eldoc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 4)" />                        
+                    <GridLayout v-for="(eldoc, index) in eldocumentaries" rows="147" columns="273" class="card"  >
+                        <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+eldoc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 4)" />                        
                     </GridLayout>
                 </StackLayout>
             </ScrollView>            
             <Label text="Ψυχαγωγία" class="h2" />
             <ScrollView orientation="horizontal">
                 <StackLayout orientation="horizontal" >
-                    <GridLayout v-for="(doc, index) in entertmns" rows="194" columns="346" class="card" >
-                        <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+doc.menu_img_url" @loaded="elementLoaded($event)"  @tap="onItemTap(index, 2)" />                        
+                    <GridLayout v-for="(doc, index) in entertmns" rows="147" columns="273" class="card" >
+                        <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+doc.menu_img_url" @loaded="elementLoaded($event)"  @tap="onItemTap(index, 2)" />                        
                     </GridLayout>
                 </StackLayout>
             </ScrollView>
             <Label text="Συνεντεύξεις" class="h2" />
             <ScrollView orientation="horizontal">
                 <StackLayout orientation="horizontal" >
-                    <GridLayout v-for="(doc, index) in interviews" rows="194" columns="346" class="card"  >
-                        <Button row="0" col="0" class="btnDpad" width="346" height="194" :backgroundImage="'http://hbbtv.ert.gr'+doc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 3)" />                        
+                    <GridLayout v-for="(doc, index) in interviews" rows="147" columns="273" class="card"  >
+                        <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+doc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 3)" />                        
                     </GridLayout>
                 </StackLayout>
             </ScrollView>                        

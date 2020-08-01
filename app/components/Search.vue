@@ -9,9 +9,9 @@
                     <Span text="  Αναζήτηση" class="h2"></Span></FormattedString></Label> 
                 <SearchBar v-model="searchQuery" textFieldHintColor="#FFFFFF" class="search" @submit="onSearchSubmit" />
                     <WrapLayout>
-                        <GridLayout  v-for="(ekp, index) in ekpompes" rows="196,auto" columns="273" class="card" >
-                            <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="ekp.bild" @loaded="elementLoaded($event)"  @tap="onTapPlay(index)" />  
-                            <HtmlView row="1" col="0" :html="ekp.title" class="eptitle" />
+                        <GridLayout  v-for="(ekp, index) in ekpompes" :rows="episode_rows" :columns="episode_col" class="card" >
+                            <Button row="0" col="0" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="ekp.bild" @loaded="elementLoaded($event)"  @tap="onTapPlay(index)" />  
+                            <HtmlView row="1" col="0" :class="'eptitle-w'+$width" :html="ekp.title" />
                         </GridLayout>
                     </WrapLayout>   
             </StackLayout>
@@ -31,6 +31,26 @@
                 view.android["jsview"] = args.object;
             },            
             onSearchSubmit(args) {
+                switch(this.$width) {
+                    case 1280: 
+                        this.episode_rows ='147, auto';
+                        this.episode_col ='273';
+                        this.photo_width='273';
+                        this.photo_height='147';
+                        break;
+                    case 1920:
+                        this.episode_rows ='194, auto';
+                        this.episode_col ='346';
+                        this.photo_width='346';
+                        this.photo_height='194';                    
+                        break;
+                    case 3840:
+                        this.episode_rows ='221, auto';
+                        this.episode_col ='410';
+                        this.photo_width='410';
+                        this.photo_height='221';                    
+                        break;
+                        };
                 var url="http://hbbtv.ert.gr/pub/smarttv/ert/dyn/feed_search.php?type=full&keyword="+this.searchQuery;
               
                 http.request({
@@ -56,7 +76,11 @@
         data() {
             return {
                 searchQuery: null,
-                ekpompes: []
+                ekpompes: [],
+                episode_rows: '',
+                episode_col: '',
+                photo_width: '',
+                photo_height: '',                
             };
         }
     };

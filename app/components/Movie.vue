@@ -1,25 +1,26 @@
 <template>
     <Page class="page"  actionBarHidden="true" >  
-        <ScrollView :style="bcpage"> 
         <StackLayout orientation="vertical">
-        <GridLayout columns="50,400,auto" rows="auto" >
-             <StackLayout row="0" col="0" colSpan="2" class="stdown">
-                <Label class="h4" :text="mv.title" style="color: white;" />
-                <Label class="diar" :text="'Διάρκεια: '+mv.dur" style="color: orange;" />
-                <HtmlView class="h5" :html="mv.short_desc" style="color: white;" />
-                <Label  v-if="mv.expiration_date" class="dm" :text="'Διαθέσιμο μέχρι: '+mv.expiration_date"  />
-                <GridLayout columns="auto,20,auto" rows="auto" style="margin-top: 100px;" >
-                    <Button row="0" col="0" class="nav-btn" text="" @loaded="elementLoaded($event)" @tap="onTapPlay" >    
-                        <FormattedString><Span text="Προβολή" ></Span></FormattedString>
-                    </Button>
-                    <Button row="0" col="2" class="nav-btn" @loaded="elementLoaded($event)" @tap="onmoreTap">
-                            <FormattedString><Span text="Περισσότερα" ></Span></FormattedString>
-                    </Button>
-                </GridLayout>
-            </StackLayout>
+        <GridLayout columns="50,400,*,*" rows="*,*,*" >
+            <Image row="0" col="0" colSpan="4" rowSpan="3" :src="this.$props.movie.bg_img_url" loadMode="async" horizontalAlignment="right" stretch="fill"  /> 
+             <StackLayout row="1" col="1" colSpan="2" >
+                <Label :class="'h2-w'+$width" :text="mv.title" />
+                <Label :class="'h3-w'+$width" :text="'Διάρκεια: '+mv.dur" />
+                <HtmlView :class="'h3-w'+$width" :html="mv.short_desc" />
+                <Label  v-if="mv.expiration_date" :class="'h3-w'+$width" :text="'Διαθέσιμο μέχρι: '+mv.expiration_date"  />
+             </StackLayout>
+            <GridLayout row="2" col="1" colSpan="2" columns="*, 80, *" rows="*" >
+                <Button row="0" col="0" colSpan="2" class="btnplay" @loaded="elementLoaded($event)" @tap="onTapPlay" >    
+                    <FormattedString><Span text="Προβολή  " ></Span>
+                    <Span class="fas" text.decode="&#xf144;" fontAttributes="Bold"></Span></FormattedString>
+                </Button>
+                <Button row="0" col="2" class="btnplay" @loaded="elementLoaded($event)" @tap="onmoreTap">
+                    <FormattedString><Span text="Περισσότερα  " ></Span>
+                    <Span class="fas" text.decode="&#xf05a;" fontAttributes="Bold"></Span></FormattedString>
+                </Button>
+            </GridLayout>                    
         </GridLayout>
         </StackLayout>      
-        </ScrollView>
     </Page>
 </template>
 
@@ -59,13 +60,6 @@
         data() {
             return {
                 mv: this.$props.movie, 
-                bcpage: {
-                    'backgroud-color': 'black',
-                    'background-image': 'url("'+this.$props.movie.bg_img_url+'")',
-                    'background-repeat': 'no-repeat',
-                    'background-position': 'right top',
-                    'background-size': 'auto',
-                    },
             };
         },
         

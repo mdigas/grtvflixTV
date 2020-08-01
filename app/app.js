@@ -7,14 +7,18 @@ import router from './routes'
 Vue.config.silent = false;
 
 Vue.prototype.$router = router
-Vue.prototype.$showDetails = {value: 1};
 
 Vue.prototype.$goto = function (to, options) {
     this.$navigateTo(this.$router[to], options)
 }
 
-const orientation = require("nativescript-orientation");
-console.log(orientation.getOrientation());
+const platformModule = require("tns-core-modules/platform");
+const screenwidth = platformModule.screen.mainScreen.widthPixels;
+console.log(screenwidth);
+Vue.prototype.$width = screenwidth;
+if(screenwidth>1920){
+    Vue.prototype.$width = 3840;
+}
 
 new Vue({
     render: h => h(App)

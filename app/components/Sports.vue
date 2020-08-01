@@ -2,16 +2,16 @@
     <Page class="page" actionBarHidden="true" >
         <ScrollView  orientation="vertical">
         <StackLayout v-if="ok" orientation="vertical">
-        <GridLayout columns="50,350,*" rows="auto" >
-             <Image row="0" col="0" colSpan="3" :src="'http://hbbtv.ert.gr'+sports[idx].bg_img_url" loadMode="async"horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
-             <StackLayout row="0" col="0" colSpan="2" class="stdown">
-                <HtmlView class="h5" :html="sports[idx].title" style="color: white;" />
-                <HtmlView class="h5" :html="sports[idx].short_desc" row="0" col="0" colSpan="2" textWrap="True" style="color: white;" />
+        <GridLayout columns="50,450,*,*" rows="*,*,auto" >
+             <Image row="0" col="0" colSpan="4" rowSpan="3" :src="'http://hbbtv.ert.gr'+sports[idx].bg_img_url" loadMode="async"horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
+             <StackLayout row="1" col="1" colSpan="2" >
+                <HtmlView :class="'h2-w'+$width" :html="sports[idx].title" />
+                <HtmlView :class="'h3-w'+$width" :html="sports[idx].short_desc" textWrap="True" />
             </StackLayout>
-            <ScrollView orientation="horizontal" row="0" col="0" colSpan="3" class="stdown1">
+            <ScrollView orientation="horizontal" row="2" col="0" colSpan="4" >
                 <StackLayout orientation="horizontal" >
-                    <GridLayout v-for="(seira, indexs) in sports" rows="147" columns="273" class="card" >
-                        <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs)" />
+                    <GridLayout v-for="(seira, indexs) in sports" :rows="episode_rows" :columns="episode_col" class="card" >
+                        <Button row="0" col="0" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs)" />
                     </GridLayout>
                 </StackLayout>
             </ScrollView>
@@ -48,6 +48,26 @@
             },
         },
         created: function() {
+            switch(this.$width) {
+                case 1280: 
+                    this.episode_rows ='147';
+                    this.episode_col ='273';
+                    this.photo_width='273';
+                    this.photo_height='147';
+                    break;
+                case 1920:
+                    this.episode_rows ='194';
+                    this.episode_col ='346';
+                    this.photo_width='346';
+                    this.photo_height='194';                    
+                    break;
+                case 3840:
+                    this.episode_rows ='221';
+                    this.episode_col ='410';
+                    this.photo_width='410';
+                    this.photo_height='221';                    
+                    break;
+                    };
             var url2="http://hbbtv.ert.gr/pub/smarttv/ert/feed_NewLayout.php";
 
             http.request({
@@ -68,6 +88,10 @@
                 sports: [ ],
                 idx: 0,
                 ok: false,
+                episode_rows: '',
+                episode_col: '',
+                photo_width: '',
+                photo_height: '',                   
             };
         }
     };

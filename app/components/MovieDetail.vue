@@ -1,8 +1,9 @@
 <template>
     <Page class="page" actionBarHidden="true" >
         <ScrollView>
-            <StackLayout orientation="vertical">
-               <HtmlView class="h6" :html="starthtml+$props.detail+endhtml" />	
+            <StackLayout orientation="vertical" class="info" >
+               <Label :class="'h2-w'+$width" text="Περισσότερες Πληροφορίες" />
+               <HtmlView :class="'h3-w'+$width" :html="starthtml+$props.detail+endhtml" />	
             </StackLayout>  
         </ScrollView>
     </Page>         

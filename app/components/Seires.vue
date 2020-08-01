@@ -1,19 +1,19 @@
 <template>
     <Page class="page" actionBarHidden="true" >
-        <GridLayout columns="50,400,*" rows="265, *" >
-             <Image row="0" col="0" colSpan="3" rowSpan="2" :src="'http://hbbtv.ert.gr'+this.$props.seira.bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
-             <StackLayout row="0" col="0" colSpan="2" class="stdown" >
-                <HtmlView class="h5" :html="mv.title" style="color: white;" />
-                <HtmlView class="h6" :html="mv.short_desc" style="color: white;" />
+        <GridLayout columns="50,400,*, *" rows="*, *, auto" >
+             <Image row="0" col="0" colSpan="4" rowSpan="3" :src="'http://hbbtv.ert.gr'+this.$props.seira.bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
+             <StackLayout row="1" col="1" colSpan="2" >
+                <HtmlView :class="'h2-w'+$width" :html="mv.title" />
+                <HtmlView :class="'h3-w'+$width" :html="mv.short_desc" />
             </StackLayout>        
-            <ScrollView row="1" col="0" colSpan="3" orientation="horizontal" >
+            <ScrollView row="2" col="0" colSpan="4" orientation="horizontal" >
                 <StackLayout orientation="horizontal" >
-                    <GridLayout  v-for="(episode, index) in episodes" rows="147, auto" columns="273" class="card" >
-                        <Button row="0" col="0" class="btnDpad" width="273" height="147" :backgroundImage="episode.image" @loaded="elementLoaded($event)" @tap="onTapPlay(index)" />
+                    <GridLayout  v-for="(episode, index) in episodes" :rows="episode_rows" :columns="episode_col" class="card" >
+                        <Button row="0" col="0" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="episode.image" @loaded="elementLoaded($event)" @tap="onTapPlay(index)" />
                         <StackLayout row="1" col="0" class="subcard" >
-                            <HtmlView v-if="episode.title" :html="episode.title" class="eptitle" />
-                            <Label v-if="episode.expiration_date" class="epsmalld" :text="'Διάρκεια: '+episode.dur+'    Διαθ.Μέχρι: '+episode.expiration_date" />
-                            <Label v-if="episode.season_num || episode.episode_num" class="epsmall" >
+                            <HtmlView v-if="episode.title" :html="episode.title" :class="'eptitle-w'+$width" />
+                            <Label v-if="episode.expiration_date" :class="'epsmalld-w'+$width" :text="'Διάρκεια: '+episode.dur+'    Διαθ.Μέχρι: '+episode.expiration_date" />
+                            <Label v-if="episode.season_num || episode.episode_num" :class="'epsmall-w'+$width" >
                                 <FormattedString>
                                     <Span v-if="episode.season_num" :text="'Σ:'+episode.season_num+' - '" />
                                     <Span v-if="episode.episode_num" :text="'E:'+episode.episode_num" />
@@ -49,7 +49,26 @@
         props: ["seira"],
 
         created: function() {
-            
+            switch(this.$width) {
+                case 1280: 
+                    this.episode_rows ='147, auto';
+                    this.episode_col ='273';
+                    this.photo_width='273';
+                    this.photo_height='147';
+                    break;
+                case 1920:
+                    this.episode_rows ='194, auto';
+                    this.episode_col ='346';
+                    this.photo_width='346';
+                    this.photo_height='194';                    
+                    break;
+                case 3840:
+                    this.episode_rows ='221, auto';
+                    this.episode_col ='410';
+                    this.photo_width='410';
+                    this.photo_height='221';                    
+                    break;
+                    };
             console.log(this.$props.seira.idnam);
             var url="http://hbbtv.ert.gr/pub/smarttv/ert/getFeedContent.php?categoryIdnam="+this.$props.seira.idnam;
 
@@ -67,13 +86,10 @@
             return {
                 mv: this.$props.seira,
                 episodes: [],
-                bcpage: {
-                    'backgroud-color': 'black',
-                    'background-image': 'url("http://hbbtv.ert.gr'+this.$props.seira.bg_img_url+'")',
-                    'background-repeat': 'no-repeat',
-                    'background-position': 'right top',
-                    'background-size': 'auto',
-                    },
+                episode_rows: '',
+                episode_col: '',
+                photo_width: '',
+                photo_height: '',
             };                
         },
         

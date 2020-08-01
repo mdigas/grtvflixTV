@@ -2,8 +2,8 @@
     <Page class="page" actionBarHidden="true" > 
         <ScrollView > 
         <StackLayout orientation="vertical">
-        <GridLayout columns="50,350,auto" rows="auto" >
-             <StackLayout row="0" col="0" colSpan="2" class="stdown">
+        <GridLayout columns="50,450,*,*" rows="*,*,auto" >
+             <StackLayout row="0" col="0" colSpan="2" >
                 <Label class="h4" :text="mv.title" style="color: white;" />
                 <Label class="diar" :text="'Διάρκεια: '+mv.dur" style="color: orange;" />
                 <Label class="desc" :text="mv.short_desc" row="0" col="0" colSpan="2" textWrap="True" />

@@ -17,7 +17,7 @@ const screenwidth = platformModule.screen.mainScreen.widthPixels;
 console.log(screenwidth);
 Vue.prototype.$width = screenwidth;
 if(screenwidth>1920){
-    Vue.prototype.$width = 3840;
+  Vue.prototype.$width = 3840;
 }
 
 new Vue({

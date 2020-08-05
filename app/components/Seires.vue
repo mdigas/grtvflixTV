@@ -1,7 +1,7 @@
 <template>
     <Page class="page" actionBarHidden="true" >
         <GridLayout columns="50,400,*, *" rows="*, *, auto" >
-             <Image row="0" col="0" colSpan="4" rowSpan="3" :src="'http://hbbtv.ert.gr'+this.$props.seira.bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
+             <Image row="0" col="0" colSpan="4" rowSpan="3" :src="'http://hbbtv.ert.gr'+this.$props.msitem.bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
              <StackLayout row="1" col="1" colSpan="2" >
                 <HtmlView :class="'h2-w'+$width" :html="mv.title" />
                 <HtmlView :class="'h3-w'+$width" :html="mv.short_desc" />
@@ -46,7 +46,7 @@
             },
         },
 
-        props: ["seira"],
+        props: ["msitem"],
 
         created: function() {
             switch(this.$width) {
@@ -69,8 +69,8 @@
                     this.photo_height='221';                    
                     break;
                     };
-            console.log(this.$props.seira.idnam);
-            var url="http://hbbtv.ert.gr/pub/smarttv/ert/getFeedContent.php?categoryIdnam="+this.$props.seira.idnam;
+            console.log(this.$props.msitem.idnam);
+            var url="http://hbbtv.ert.gr/pub/smarttv/ert/getFeedContent.php?categoryIdnam="+this.$props.msitem.idnam;
 
             http.request({
                 url: url,
@@ -84,7 +84,7 @@
 
         data() {
             return {
-                mv: this.$props.seira,
+                mv: this.$props.msitem,
                 episodes: [],
                 episode_rows: '',
                 episode_col: '',

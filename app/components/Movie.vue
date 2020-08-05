@@ -2,7 +2,7 @@
     <Page class="page"  actionBarHidden="true" >  
         <StackLayout orientation="vertical">
         <GridLayout columns="50,400,*,*" rows="*,*,*" >
-            <Image row="0" col="0" colSpan="4" rowSpan="3" :src="this.$props.movie.bg_img_url" loadMode="async" horizontalAlignment="right" stretch="fill"  /> 
+            <Image row="0" col="0" colSpan="4" rowSpan="3" :src="this.$props.msitem.bg_img_url" loadMode="async" horizontalAlignment="right" stretch="fill"  /> 
              <StackLayout row="1" col="1" colSpan="2" >
                 <Label :class="'h2-w'+$width" :text="mv.title" />
                 <Label :class="'h3-w'+$width" :text="'Διάρκεια: '+mv.dur" />
@@ -55,11 +55,11 @@
             },      
         },
 
-        props: ["movie"], 
+        props: ["msitem"], 
         
         data() {
             return {
-                mv: this.$props.movie, 
+                mv: this.$props.msitem, 
             };
         },
         

@@ -15,7 +15,7 @@
                 <ScrollView orientation="horizontal" >
                     <StackLayout orientation="horizontal" >
                         <GridLayout v-for="(movie, index) in movies" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="movie.image" @loaded="elementLoaded($event)" @tap="onItemTap1(index)" /> 
+                            <Button row="0" col="0" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="movie.image" @loaded="elementLoaded($event)" @tap="onItemTap(index,1)" /> 
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>
@@ -23,7 +23,7 @@
                 <ScrollView orientation="horizontal" >
                     <StackLayout orientation="horizontal" >
                         <GridLayout v-for="(seira, indexs) in seires" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs)" />
+                            <Button row="0" col="0" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(indexs,2)" />
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>
@@ -31,7 +31,7 @@
                 <ScrollView orientation="horizontal" >
                     <StackLayout orientation="horizontal" >
                         <GridLayout v-for="(doc, indexd) in documentaries" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+doc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap3(indexd)" />
+                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+doc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(indexd,3)" />
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>
@@ -39,7 +39,7 @@
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
                         <GridLayout v-for="(eldoc, index) in eldocumentaries" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+eldoc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap6(index)" />                            
+                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+eldoc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index,4)" />                            
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>            
@@ -47,7 +47,7 @@
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
                         <GridLayout v-for="(enim, index) in enimerosi" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="enim.image" @loaded="elementLoaded($event)" @tap="onItemTap5(index)" />                            
+                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="enim.image" @loaded="elementLoaded($event)" @tap="onItemTap(index,5)" />                            
                         </GridLayout>
                     </StackLayout>
                 </ScrollView> 
@@ -55,7 +55,7 @@
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
                         <GridLayout v-for="(paid, index) in paidika" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+paid.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap4(index)" />                            
+                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+paid.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index,6)" />                            
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>   
@@ -77,9 +77,32 @@
                 const view = args.object;
                 view.android["jsview"] = args.object;
             },                              
-            onItemTap1: function(args) {
-                console.log("Item with index: " + args + " tapped");
-                this.$goto('Movie', {
+            onItemTap: function(args,no) {
+                var seira = "";
+                var NavNext = "Seires";
+                switch(no) {
+                    case 1: 
+                        seira = this.movies[args];
+                        NavNext = "Movie";
+                        break;
+                    case 2:
+                        seira = this.seires[args];
+                        break;
+                    case 3:
+                        seira = this.documentaries[args];
+                        break;
+                    case 4:
+                        seira = this.eldocumentaries[args];
+                        break;     
+                    case 5:
+                        seira = this.enimerosi[args];
+                        NavNext = "Movie";
+                        break;
+                    case 6:
+                        seira = this.paidika[args];
+                        break;                         
+                    };
+                this.$goto(NavNext, {
                     animated: true,
                     transition: {
                         name: "slideLeft",
@@ -88,85 +111,10 @@
                     transitioniOS: {},
                     transitionAndroid: {},
                     props: {
-                        movie: this.movies[args]
+                        msitem: seira
                     }
                 });
             },
-            onItemTap2: function(args) {
-                console.log("Item with index: " + args + " tapped");
-                this.$goto('Seires', {
-                    animated: true,
-                    transition: {
-                        name: "slideLeft",
-                        duration: 250,
-                        curve: "easeIn"},
-                    transitioniOS: {},
-                    transitionAndroid: {},
-                    props: {
-                        seira: this.seires[args]
-                    }
-                });
-            },
-            onItemTap3: function(args) {
-                console.log("Item with index: " + args + " tapped");
-                this.$goto('Seires', {
-                    animated: true,
-                    transition: {
-                        name: "slideLeft",
-                        duration: 250,
-                        curve: "easeIn"},
-                    transitioniOS: {},
-                    transitionAndroid: {},
-                    props: {
-                        seira: this.documentaries[args]
-                    }
-                });
-            }, 
-            onItemTap6: function(args) {
-                console.log("Item with index: " + args + " tapped");
-                this.$goto('Seires', {
-                    animated: true,
-                    transition: {
-                        name: "slideLeft",
-                        duration: 250,
-                        curve: "easeIn"},
-                    transitioniOS: {},
-                    transitionAndroid: {},
-                    props: {
-                        seira: this.eldocumentaries[args]
-                    }
-                });
-            },            
-            onItemTap4: function(args) {
-                console.log("Item with index: " + args + " tapped");
-                this.$goto('Seires', {
-                    animated: true,
-                    transition: {
-                        name: "slideLeft",
-                        duration: 250,
-                        curve: "easeIn"},
-                    transitioniOS: {},
-                    transitionAndroid: {},
-                    props: {
-                        seira: this.paidika[args]
-                    }
-                });
-            }, 
-            onItemTap5: function(args) {
-                console.log("Item with index: " + args + " tapped");
-                this.$goto('Movie', {
-                    animated: true,
-                    transition: {
-                        name: "slideLeft",
-                        duration: 250,
-                        curve: "easeIn"},
-                    transitioniOS: {},
-                    transitionAndroid: {},
-                    props: {
-                        movie: this.enimerosi[args]
-                    }
-                });
-            },                                  
         },
         created: function() {
             switch(this.$width) {
@@ -245,7 +193,7 @@
                 episode_rows: '',
                 episode_col: '',
                 photo_width: '',
-                photo_height: '',                
+                photo_height: '',                 
             };
         }
     };

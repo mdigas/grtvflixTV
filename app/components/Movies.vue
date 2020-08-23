@@ -43,7 +43,7 @@
                     transitioniOS: {},
                     transitionAndroid: {},
                     props: {
-                        movie: this.movies[args]
+                        msitem: this.movies[args]
                     }
                 });
             },

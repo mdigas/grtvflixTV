@@ -20,6 +20,7 @@ if(screenwidth>1920){
   Vue.prototype.$width = 3840;
 }
 
+
 new Vue({
     render: h => h(App)
 }).$start();

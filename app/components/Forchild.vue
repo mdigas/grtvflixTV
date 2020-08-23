@@ -3,36 +3,22 @@
         <ScrollView  orientation="vertical">
         <StackLayout v-if="ok" orientation="vertical">
         <GridLayout columns="50,400,*,*" rows="*,*,auto" >
-             <Image row="0" col="0" colSpan="4" rowSpan="3" :src="'http://hbbtv.ert.gr'+paidika[idx].bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
+             <Image row="0" col="0" colSpan="4" rowSpan="3" :src="'http://hbbtv.ert.gr'+paidika[0].items[idx].bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit"  /> 
              <StackLayout row="1" col="1" colSpan="2" >
-                <HtmlView :class="'h2-w'+$width" :html="paidika[idx].title" />
-                <HtmlView :class="'h3-w'+$width" :html="paidika[idx].short_desc" textWrap="True" />
+                <HtmlView :class="'h2-w'+$width" :html="paidika[0].items[idx].title" />
+                <HtmlView :class="'h3-w'+$width" :html="paidika[0].items[idx].short_desc" textWrap="True" />
             </StackLayout>
                 <StackLayout row="2" col="0" colSpan="4" >
-                    <Label text="Παιδικά" class="h2" />                        
+                <StackLayout v-for="(list, listindex) in paidika">
+                    <HtmlView class="h2" :html="list.masterCategory" />
                     <ScrollView orientation="horizontal">
                         <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(paid, index) in paidika" :rows="episode_rows" :columns="episode_col" class="card"  >
-                                <Button row="0" col="0" :id="'c'+index" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+paid.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 1)" />
-                            </GridLayout>
+                            <GridLayout v-for="(item, index) in list.items" :rows="episode_rows" :columns="episode_col" class="card" >
+                                <Button row="0" col="0" :id="'s'+index" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+item.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(listindex,index)" />
+                            </GridLayout>                            
                         </StackLayout>
-                    </ScrollView>   
-                    <Label text="Μένουμε σπίτι" class="h2" />                        
-                    <ScrollView orientation="horizontal">
-                        <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(mn, index) in mensp" :rows="episode_rows" :columns="episode_col" class="card" >
-                                <Button row="0" col="0" class="btnDpad"  :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+mn.menu_img_url" @loaded="elementLoaded($event)"  @tap="onItemTap(index, 2)" />
-                            </GridLayout>
-                        </StackLayout>
-                    </ScrollView>   
-                    <Label v-if="ist" text="Ιστορίες" class="h2" />                        
-                    <ScrollView orientation="horizontal">
-                        <StackLayout orientation="horizontal" >
-                            <GridLayout v-for="(ist, index) in istories" :rows="episode_rows" :columns="episode_col" class="card"  >
-                                <Button row="0" col="0" class="btnDpad"  :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+ist.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index, 3)" />
-                            </GridLayout>
-                        </StackLayout>
-                    </ScrollView>   
+                    </ScrollView>              
+                </StackLayout>
                 </StackLayout>
         </GridLayout>
         </StackLayout>
@@ -50,19 +36,9 @@
                 const view = args.object;
                 view.android["jsview"] = args.object;              
             },
-            onItemTap: function(args, no) {
+            onItemTap: function(l,args) {
                 var seira = "";
-                switch(no) {
-                    case 1: 
-                        seira = this.paidika[args];
-                        break;
-                    case 2:
-                        seira = this.mensp[args];
-                        break;
-                    case 3:
-                        seira = this.istories[args];
-                        break;
-                    };
+                seira = this.paidika[l].items[args];
                 this.$goto('Seires', {
                     animated: true,
                     transition: {
@@ -72,7 +48,7 @@
                     transitioniOS: {},
                     transitionAndroid: {},
                     props: {
-                        seira: seira
+                        msitem: seira
                     }
                 });
             },                                   
@@ -104,13 +80,9 @@
                 url: url2,
                 method: "GET",
                 }).then(response => {
-                this.paidika = response.content.toJSON().services.filter(function (chain) {
-                        return chain.masterCategory === "&Delta;&iota;&alpha;&sigma;&kappa;&#941;&delta;&alpha;&sigma;&eta;";})[0].items;
-                this.mensp = response.content.toJSON().services.filter(function (chain) {
-                        return chain.masterCategory === "&Mu;&alpha;&theta;&alpha;&#943;&nu;&omicron;&upsilon;&mu;&epsilon; &sigma;&tau;&omicron; &sigma;&pi;&#943;&tau;&iota;";})[0].items;
-                this.istories = response.content.toJSON().services.filter(function (chain) {
-                        return chain.masterCategory === "&Iota;&sigma;&tau;&omicron;&rho;&#943;&epsilon;&sigmaf; &gamma;&iota;&alpha; &pi;&alpha;&iota;&delta;&iota;&#940;";})[0].items;
-                this.idx = Math.floor(Math.random() * this.paidika.length);
+                    this.paidika = response.content.toJSON().services.filter(function (chain) {
+                            return chain.id === "29";});                    
+                this.idx = Math.floor(Math.random() * this.paidika[0].items.length);
                 this.ok = true;
                 }, error => {
                 console.error(error);

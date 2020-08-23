@@ -10,7 +10,7 @@
                 <Label  v-if="mv.expiration_date" :class="'h3-w'+$width" :text="'Διαθέσιμο μέχρι: '+mv.expiration_date"  />
              </StackLayout>
             <GridLayout row="2" col="1" colSpan="2" columns="*, 80, *" rows="*" >
-                <Button row="0" col="0" colSpan="2" class="btnplay" @loaded="elementLoaded($event)" @tap="onTapPlay" >    
+                <Button row="0" col="0" class="btnplay" @loaded="elementLoaded($event)" @tap="onTapPlay" >    
                     <FormattedString><Span text="Προβολή  " ></Span>
                     <Span class="fas" text.decode="&#xf144;" fontAttributes="Bold"></Span></FormattedString>
                 </Button>

@@ -42,7 +42,7 @@
                     transitioniOS: {},
                     transitionAndroid: {},
                     props: {
-                        movie: this.enimerosi[args]
+                        msitem: this.enimerosi[args]
                     }
                 });
             },                                  

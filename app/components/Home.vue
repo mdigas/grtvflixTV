@@ -15,50 +15,48 @@
                 <ScrollView orientation="horizontal" >
                     <StackLayout orientation="horizontal" >
                         <GridLayout v-for="(movie, index) in movies" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="movie.image" @loaded="elementLoaded($event)" @tap="onItemTap(index,1)" /> 
+                            <Button row="0" col="0" :id="'m'+index" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="movie.image" @loaded="elementLoaded($event)" @tap="onItemTap(0,index,1)" /> 
                         </GridLayout>
                     </StackLayout>
                 </ScrollView>
-                <Label text="Σειρές" class="h2"  />
-                <ScrollView orientation="horizontal" >
-                    <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(seira, indexs) in seires" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(indexs,2)" />
-                        </GridLayout>
-                    </StackLayout>
-                </ScrollView>
-                <Label text="Ξένα Ντοκιμαντέρ" class="h2"  />
-                <ScrollView orientation="horizontal" >
-                    <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(doc, indexd) in documentaries" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+doc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(indexd,3)" />
-                        </GridLayout>
-                    </StackLayout>
-                </ScrollView>
-                <Label text="Ελληνικά Ντοκιμαντέρ" class="h2" />
-                <ScrollView orientation="horizontal">
-                    <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(eldoc, index) in eldocumentaries" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+eldoc.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index,4)" />                            
-                        </GridLayout>
-                    </StackLayout>
-                </ScrollView>            
+                <StackLayout v-for="(list, listindex) in seires">
+                    <HtmlView class="h2" :html="list.masterCategory" />
+                    <ScrollView orientation="horizontal">
+                        <StackLayout orientation="horizontal" >
+                            <GridLayout v-for="(item, index) in list.items" :rows="episode_rows" :columns="episode_col" class="card" >
+                                <Button row="0" col="0" :id="'s'+index" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+item.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(listindex,index,2)" />
+                            </GridLayout>                            
+                        </StackLayout>
+                    </ScrollView>              
+                </StackLayout>
+                <StackLayout v-for="(list, listindex) in documentaries">
+                    <HtmlView class="h2" :html="list.masterCategory" />
+                    <ScrollView orientation="horizontal">
+                        <StackLayout orientation="horizontal" >
+                            <GridLayout v-for="(item, index) in list.items" :rows="episode_rows" :columns="episode_col" class="card" >
+                                <Button row="0" col="0" :id="'s'+index" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+item.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(listindex,index,3)" />
+                            </GridLayout>                            
+                        </StackLayout>
+                    </ScrollView>              
+                </StackLayout>           
                 <Label text="Ενημέρωση" class="h2" />
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" >
                         <GridLayout v-for="(enim, index) in enimerosi" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="enim.image" @loaded="elementLoaded($event)" @tap="onItemTap(index,5)" />                            
+                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="enim.image" @loaded="elementLoaded($event)" @tap="onItemTap(0,index,4)" />                            
                         </GridLayout>
                     </StackLayout>
                 </ScrollView> 
-                <Label text="Παιδικά" class="h2" />                        
-                <ScrollView orientation="horizontal">
-                    <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(paid, index) in paidika" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0"  class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+paid.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(index,6)" />                            
-                        </GridLayout>
-                    </StackLayout>
-                </ScrollView>   
+                <StackLayout v-for="(list, listindex) in paidika">
+                    <HtmlView class="h2" :html="list.masterCategory" />
+                    <ScrollView orientation="horizontal">
+                        <StackLayout orientation="horizontal" >
+                            <GridLayout v-for="(item, index) in list.items" :rows="episode_rows" :columns="episode_col" class="card" >
+                                <Button row="0" col="0" :id="'s'+index" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+item.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(listindex,index,5)" />
+                            </GridLayout>                            
+                        </StackLayout>
+                    </ScrollView>              
+                </StackLayout>
             </StackLayout>             
         </GridLayout>
 
@@ -77,7 +75,7 @@
                 const view = args.object;
                 view.android["jsview"] = args.object;
             },                              
-            onItemTap: function(args,no) {
+            onItemTap: function(l, args,no) {
                 var seira = "";
                 var NavNext = "Seires";
                 switch(no) {
@@ -86,20 +84,17 @@
                         NavNext = "Movie";
                         break;
                     case 2:
-                        seira = this.seires[args];
+                        seira = this.seires[l].items[args];
                         break;
                     case 3:
-                        seira = this.documentaries[args];
+                        seira = this.documentaries[l].items[args];
                         break;
                     case 4:
-                        seira = this.eldocumentaries[args];
-                        break;     
-                    case 5:
                         seira = this.enimerosi[args];
                         NavNext = "Movie";
                         break;
-                    case 6:
-                        seira = this.paidika[args];
+                    case 5:
+                        seira = this.paidika[l].items[args];
                         break;                         
                     };
                 this.$goto(NavNext, {
@@ -167,15 +162,13 @@
                 url: url2,
                 method: "GET",
                 }).then(response => {
-                this.seires = response.content.toJSON().services.filter(function (chain) {
-                        return chain.masterCategory === "TV &Sigma;&epsilon;&iota;&rho;&#941;&sigmaf;";})[0].items;
-                this.documentaries = response.content.toJSON().services.filter(function (chain) {
-                        return chain.masterCategory === "&Xi;&#941;&nu;&alpha; &Nu;&tau;&omicron;&kappa;&iota;&mu;&alpha;&nu;&tau;&#941;&rho;";})[0].items;
-                this.eldocumentaries = response.content.toJSON().services.filter(function (chain) {
-                        return chain.masterCategory === "&Epsilon;&lambda;&lambda;&eta;&nu;&iota;&kappa;&#940; &Nu;&tau;&omicron;&kappa;&iota;&mu;&alpha;&nu;&tau;&#941;&rho;";})[0].items;
-                this.paidika = response.content.toJSON().services.filter(function (chain) {
-                        return chain.masterCategory === "&Delta;&iota;&alpha;&sigma;&kappa;&#941;&delta;&alpha;&sigma;&eta;";})[0].items;
-                }, error => {
+                    this.seires = response.content.toJSON().services.filter(function (chain) {
+                            return chain.id === "32";});
+                    this.documentaries = response.content.toJSON().services.filter(function (chain) {
+                            return chain.id === "26";});
+                    this.paidika = response.content.toJSON().services.filter(function (chain) {
+                            return chain.id === "29";}); }, 
+                    error => {
                 console.error(error);
                 });
               
@@ -184,8 +177,7 @@
             return {
                 movies: [ ],
                 seires: [ ],
-                documentaries: [ ],
-                eldocumentaries: [ ],                
+                documentaries: [ ],               
                 enimerosi: [ ],
                 paidika: [ ],
                 idx: 0,

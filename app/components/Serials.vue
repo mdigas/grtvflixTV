@@ -3,28 +3,22 @@
         <ScrollView  orientation="vertical">
         <StackLayout v-if="ok" orientation="vertical">
         <GridLayout columns="50,400,*,*" rows="*,*,auto" >
-             <Image row="0" col="0" colSpan="4" rowSpan="3" :src="'http://hbbtv.ert.gr'+seires[idx].bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit" /> 
+             <Image row="0" col="0" colSpan="4" rowSpan="3" :src="'http://hbbtv.ert.gr'+seires[0].items[idx].bg_img_url" loadMode="async" horizontalAlignment="right" verticalAlignment="top" stretch="aspectFit" /> 
              <StackLayout row="1" col="1" colSpan="2" >
-                <HtmlView :class="'h2-w'+$width" :html="seires[idx].title" />
-                <HtmlView :class="'h3-w'+$width" :html="seires[idx].short_desc" textWrap="True" />
+                <HtmlView :class="'h2-w'+$width" :html="seires[0].items[idx].title" />
+                <HtmlView :class="'h3-w'+$width" :html="seires[0].items[idx].short_desc" textWrap="True" />
             </StackLayout>
             <StackLayout row="2" col="0" colSpan="4" >
-                <Label text="Web Σειρές" class="h2" />
-                <ScrollView orientation="horizontal">
-                    <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(seira, indexsw) in seiresweb" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap2(indexsw,1)" />
-                        </GridLayout>
-                    </StackLayout>
-                </ScrollView> 
-                <Label text="Σειρές" class="h2" />
-                <ScrollView orientation="horizontal">
-                    <StackLayout orientation="horizontal" >
-                        <GridLayout v-for="(seira, indexs) in seires" :rows="episode_rows" :columns="episode_col" class="card" >
-                            <Button row="0" col="0" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+seira.menu_img_url" class="btnDpad" @loaded="elementLoaded($event)" @tap="onItemTap2(indexs,2)" />
-                        </GridLayout>
-                    </StackLayout>
-                </ScrollView>   
+                <StackLayout v-for="(list, listindex) in seires">
+                    <HtmlView class="h2" :html="list.masterCategory" />
+                    <ScrollView orientation="horizontal">
+                        <StackLayout orientation="horizontal" >
+                            <GridLayout v-for="(item, index) in list.items" :rows="episode_rows" :columns="episode_col" class="card" >
+                                <Button row="0" col="0" :id="'s'+index" class="btnDpad" :width="photo_width" :height="photo_width" :backgroundImage="'http://hbbtv.ert.gr'+item.menu_img_url" @loaded="elementLoaded($event)" @tap="onItemTap(listindex,index)" />
+                            </GridLayout>                            
+                        </StackLayout>
+                    </ScrollView>              
+                </StackLayout>                
             </StackLayout>             
         </GridLayout>           
         </StackLayout>
@@ -41,16 +35,9 @@
                 const view = args.object;
                 view.android["jsview"] = args.object;              
             },
-            onItemTap2: function(args, no) {
+            onItemTap: function(l, args) {
                 var seira = "";
-                switch(no) {
-                    case 1: 
-                        seira = this.seiresweb[args];
-                        break;
-                    case 2:
-                        seira = this.seires[args];
-                        break;                        
-                    };
+                seira = this.seires[l].items[args];
                 console.log("Item with index: " + args + " tapped");
                 this.$goto('Seires', {
                     animated: true,
@@ -61,7 +48,7 @@
                     transitioniOS: {},
                     transitionAndroid: {},
                     props: {
-                        seira: seira
+                        msitem: seira
                     }
                 });
             },
@@ -94,10 +81,8 @@
                 method: "GET",
                 }).then(response => {
                 this.seires = response.content.toJSON().services.filter(function (chain) {
-                        return chain.masterCategory === "TV &Sigma;&epsilon;&iota;&rho;&#941;&sigmaf;";})[0].items;
-                this.seiresweb = response.content.toJSON().services.filter(function (chain) {
-                        return chain.masterCategory === "Web &Sigma;&epsilon;&iota;&rho;&#941;&sigmaf;";})[0].items;
-                this.idx = Math.floor(Math.random() * this.seires.length);
+                        return chain.id === "32";});
+                this.idx = Math.floor(Math.random() * this.seires[0].items.length);
                 this.ok = true;
                 }, error => {
                 console.error(error);

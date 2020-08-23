@@ -42,7 +42,7 @@
                     transitioniOS: {},
                     transitionAndroid: {},
                     props: {
-                        seira: this.sports[args]
+                        msitem: this.sports[args]
                     }
                 });
             },
